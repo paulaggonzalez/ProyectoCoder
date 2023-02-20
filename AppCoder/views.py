@@ -22,3 +22,15 @@ def entregables (request):
 def estudiantes (request):
     return render(request, "AppCoder/estudiantes.html")
     #return HttpResponse("Vista estudiantes")
+
+def acudientes (request):
+    return render(request, "AppCoder/acudiente.html")
+    #return HttpResponse("Vista acudientes")
+
+def materias (request):
+    return render(request, "AppCoder/materias.html")
+    #return HttpResponse("Vista entregables")
+
+def horario (request):
+    return render(request, "AppCoder/horario.html")
+    #return HttpResponse("Vista estudiantes")
