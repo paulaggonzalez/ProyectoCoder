@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from AppCoder.models import *
-from AppCoder.forms import *
+from AppCoder.forms import CursoFormulario
 
 # Create your views here.
 def inicios (request):
@@ -9,8 +9,24 @@ def inicios (request):
     #return HttpResponse("Vista inicio")
 
 def cursos (request):
-    return render(request, "AppCoder/cursos.html")
-    #return HttpResponse("Vista cursos")
+    data = {
+        'registro': CursoFormulario()
+    }
+    if request.method == 'POST':
+        formulario = CursoFormulario(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = 'Busqueda de Curso existosa'
+            return render(request, "AppCoder/inicio.html")
+        else:
+            data['registro'] = formulario
+    return render(request, "AppCoder/cursoFormulario.html", data)
+
+
+
+
+
+
 
 def profesores (request):
     return render(request, "AppCoder/profesores.html")
@@ -42,22 +58,6 @@ def horario (request):
 #       curso.save()
 #      return render(request, "AppCoder/inicio.html")
 #    return render(request, "AppCoder/cursoFormulario.html")
-
-def cursoFormulario(request):
-    if request.method == 'POST':
-        miFormulario = CursoFormulario(request.POST) 
-        #print(miFormulario)
-
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-            curso = Curso(nombre= informacion['curso'], comision= informacion['comision'])
-            curso.save()
-            return render(request, "AppCoder/inicio.html")
-
-    else:
-        miFormulario = CursoFormulario()
-
-    return render(request, "AppCoder/cursoFormulario.html" ,{"miFormulario":miFormulario})
 
 def busquedaComision (request):
     return render(request, "AppCoder/busquedaComision.html")
