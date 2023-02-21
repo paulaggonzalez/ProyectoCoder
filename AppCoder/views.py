@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppCoder.models import Curso
-from AppCoder.forms import CursoFormulario
+from AppCoder.forms import *
 
 
 # Create your views here.
@@ -17,7 +16,7 @@ def cursos(request):
         formulario = CursoFormulario(data=request.POST)
         if formulario.is_valid():
             formulario = formulario.save()
-            data['mensaje'] = 'Entregable registrado con exito.'
+            data['mensaje'] = 'Registro Exitoso.'
             return render(request, "AppCoder/inicio.html")
         else:
             data['miFormulario'] = formulario
@@ -25,28 +24,88 @@ def cursos(request):
 
 
 def profesores (request):
-    return render(request, "AppCoder/profesores.html")
-    #return HttpResponse("Vista profesores")
+    data = {
+        'miFormulario': ProfesorFormulario()
+    }
+    if request.method == 'POST':
+        formulario = ProfesorFormulario(data=request.POST)
+        if formulario.is_valid():
+            formulario = formulario.save()
+            data['mensaje'] = 'Registro Exitoso.'
+            return render(request, "AppCoder/inicio.html")
+        else:
+            data['miFormulario'] = formulario
+    return render(request, "AppCoder/ProfesorFormulario.html", data)
 
 def entregables (request):
-    return render(request, "AppCoder/entregables.html")
-    #return HttpResponse("Vista entregables")
+    data = {
+        'miFormulario': EntregableFromulario()
+    }
+    if request.method == 'POST':
+        formulario = EntregableFromulario(data=request.POST)
+        if formulario.is_valid():
+            formulario = formulario.save()
+            data['mensaje'] = 'Registro Exitoso.'
+            return render(request, "AppCoder/inicio.html")
+        else:
+            data['miFormulario'] = formulario
+    return render(request, "AppCoder/EntregableFromulario.html", data)
 
 def estudiantes (request):
-    return render(request, "AppCoder/estudiantes.html")
-    #return HttpResponse("Vista estudiantes")
+    data = {
+        'miFormulario': EstudianteFormulario()
+    }
+    if request.method == 'POST':
+        formulario = EstudianteFormulario(data=request.POST)
+        if formulario.is_valid():
+            formulario = formulario.save()
+            data['mensaje'] = 'Registro Exitoso.'
+            return render(request, "AppCoder/inicio.html")
+        else:
+            data['miFormulario'] = formulario
+    return render(request, "AppCoder/EstudianteFormulario.html", data)
 
 def acudientes (request):
-    return render(request, "AppCoder/acudiente.html")
-    #return HttpResponse("Vista acudientes")
+    data = {
+        'miFormulario': AcudientesFormulario()
+    }
+    if request.method == 'POST':
+        formulario = AcudientesFormulario(data=request.POST)
+        if formulario.is_valid():
+            formulario = formulario.save()
+            data['mensaje'] = 'Registro Exitoso.'
+            return render(request, "AppCoder/inicio.html")
+        else:
+            data['miFormulario'] = formulario
+    return render(request, "AppCoder/AcudientesFormulario.html", data)
 
 def materias (request):
-    return render(request, "AppCoder/materias.html")
-    #return HttpResponse("Vista entregables")
+    data = {
+        'miFormulario':MateriaFormulario()
+    }
+    if request.method == 'POST':
+        formulario = MateriaFormulario(data=request.POST)
+        if formulario.is_valid():
+            formulario = formulario.save()
+            data['mensaje'] = 'Registro Exitoso.'
+            return render(request, "AppCoder/inicio.html")
+        else:
+            data['miFormulario'] = formulario
+    return render(request, "AppCoder/MateriaFormulario.html", data)
 
 def horario (request):
-    return render(request, "AppCoder/horario.html")
-    #return HttpResponse("Vista estudiantes")
+    data = {
+        'miFormulario': HorarioFormulario()
+    }
+    if request.method == 'POST':
+        formulario = HorarioFormulario(data=request.POST)
+        if formulario.is_valid():
+            formulario = formulario.save()
+            data['mensaje'] = 'Registro Exitoso.'
+            return render(request, "AppCoder/inicio.html")
+        else:
+            data['miFormulario'] = formulario
+    return render(request, "AppCoder/HorarioFormulario.html", data)
 
 #def cursoFormulario (request):
 #   if request.method == 'POST':
