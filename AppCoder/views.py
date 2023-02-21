@@ -61,3 +61,12 @@ def cursoFormulario(request):
 
 def busquedaComision (request):
     return render(request, "AppCoder/busquedaComision.html")
+
+def buscar (request):
+    if request.GET["comision"]:
+        comision = request.GET["comision"]
+        cursos = Curso.objects.filter(comision__icontains=comision) 
+        return render(request, "AppCoder/resultadoBusqueda.html", {"cursos":cursos, "comision":comision})
+    else:
+        respuesta = "No enviaste un valor valido"
+    return HttpResponse(respuesta)
