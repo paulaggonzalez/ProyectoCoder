@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario - Agregar Curso</title>
-</head>
-<body>
-    <form action = "" method="POST"> {% csrf_token %}
-        <p> Curso: <input type="text" name = "curso"> </p>
-        <p> Comision: <input type="number" name = "comision"> </p>
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+    <!-- Aqui va lo que cambia y lo asociado a esta vista -->
+{% if miFormulario.errors %}
 
-        <input type = "submit" value = "Enviar">
+<p style="color: red"> Estan mal los datos, revisar </p>
+
+{% endif %}
+
+<form action="" method="POST">{% csrf_token %}
+
+    <p> Registra los campos del curso requeridos: </p>
+        
+        {{miFormulario}}
+
+        <input type="submit" value="Enviar">
+
     </form>
+    {% endblock %}
 </body>
 </html>
